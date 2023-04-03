@@ -6,6 +6,8 @@ use angga7togk\chatperworld\ChatPerWorld;
 
 class ConfigUpdate {
 
+	private ChatPerWorld $plugin;
+
     public function __construct(ChatPerWorld $plugin) {
         $this->plugin = $plugin;
     }
