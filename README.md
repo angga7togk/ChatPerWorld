@@ -13,11 +13,11 @@ To Separate Messages In A Specific World
 
 # Config
 
-**Prefix**
+// Prefix
 Prefix: "§e[CPW]§r"
 
-**Format Global Chat**
+// Format Global Chat
 Format: "§d[Global] {player} > {msg}"
 
-**Config Version**
+// Config Version
 Config-Version: "1.0"
