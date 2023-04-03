@@ -45,7 +45,7 @@ class ChatPerWorld extends PluginBase implements Listener{
                 $player->sendMessage($this->prefix."Usage: /gchat <message>");
                 return true;
             }
+            return false;
         }
-        
     }
 }
