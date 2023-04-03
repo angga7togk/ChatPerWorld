@@ -7,7 +7,7 @@ description: "To Split Words In Specific Word"
 
 commands:
   globalchat:
-    description: "global chat"
+    description: "send global message."
     permission: cpw.globalchat.command
     aliases: [gchat]
 
