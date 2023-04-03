@@ -8,9 +8,9 @@ description: "To Split Words In Specific Word"
 commands:
   globalchat:
     description: "send global message."
-    permission: cpw.globalchat.command
+    permission: chatperworld.globalchat.command
     aliases: [gchat]
 
 permissions:
-  cpw.globalchat.command:
+  chatperworld.globalchat.command:
     default: op

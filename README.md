@@ -9,7 +9,7 @@ To Separate Messages In A Specific World
 
 | Command | Description | Permission | Default |
 | --- | --- | --- | --- |
-| `/gchat` | Send Global Message | `cpw.globalchat.command` | op |
+| `/gchat` | Send Global Message | `chatperworld.globalchat.command` | op |
 
 # Config
 
