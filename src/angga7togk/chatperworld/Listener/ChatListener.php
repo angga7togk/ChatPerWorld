@@ -10,6 +10,8 @@ use angga7togk\chatperworld\ChatPerWorld;
 
 class ChatListener implements Listener{
 
+	public $plugin;
+
     public function __construct(ChatPerWorld $plugin) {
         $this->plugin = $plugin;
     }
