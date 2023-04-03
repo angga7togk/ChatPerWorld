@@ -4,3 +4,13 @@ version: 1.0.0
 api: 4.0.0
 author: Angga7Togk
 description: "To Split Words In Specific Word"
+
+commands:
+  globalchat:
+    description: "global chat"
+    permission: cpw.globalchat.command
+    aliases: [gchat]
+
+permissions:
+  cpw.globalchat.command:
+    default: op
