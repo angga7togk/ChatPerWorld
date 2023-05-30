@@ -36,8 +36,6 @@ class ChatPerWorld extends PluginBase
         // Prefix
         $this->prefix = $this->cfg->get("Prefix") . " ";
 
-        $this->GlobalChat;
-
         // Config Update
         $this->cu = new ConfigUpdate($this);
         $this->cu->ConfigUpdate();
