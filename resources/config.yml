@@ -1,8 +1,21 @@
 # Prefix
-Prefix: "§e[CPW]§r"
+Prefix: "§6[CPW]§r"
 
 # Format Global Chat
 Format: "§d[Global] {player} > {msg}"
 
+# Message
+Message:
+  GlobalChat:
+    enable: "§aEnabled GlobalChat Mode!"
+    disable: "§cDisabled GlobalChat Mode!"
+    actionbar: "§aYour Enabled GlobalChat Mode!"
+  Blacklist-WorldChat: "§cit is forbidden to send messages in this world"
+
+# Forbids players from Sending Messages in this world
+Blacklist-WorldChat:
+- lobby1
+- lobby2
+
 # Config Version
-Config-Version: "1.0"
+Config-Version: "2.0"

@@ -2,52 +2,60 @@
 
 namespace angga7togk\chatperworld;
 
-use pocketmine\plugin\PluginBase;
+use angga7togk\chatperworld\Listener\BlacklistChatListener;
 use pocketmine\utils\Config;
-use pocketmine\player\Player;
 use pocketmine\command\Command;
+use pocketmine\plugin\PluginBase;
 use pocketmine\command\CommandSender;
 use pocketmine\console\ConsoleCommandSender;
-
-use angga7togk\chatperworld\Listener\ChatListener;
 use angga7togk\chatperworld\updater\ConfigUpdate;
+use angga7togk\chatperworld\Listener\ChatListener;
+use angga7togk\chatperworld\Listener\GlobalChatListener;
 
-class ChatPerWorld extends PluginBase{
+class ChatPerWorld extends PluginBase
+{
 
     public $cfg;
     public $prefix;
     public $cu;
     public $cfgversion;
+    public $GlobalChat;
+    const cfgversion = "2.0";
 
-    const cfgversion = "1.0";
-
-    public function onEnable():void{
-        // ChatListener
+    public function onEnable(): void
+    {
+        // Listener
         $this->getServer()->getPluginManager()->registerEvents(new ChatListener($this), $this);
+        $this->getServer()->getPluginManager()->registerEvents(new GlobalChatListener($this), $this);
+        $this->getServer()->getPluginManager()->registerEvents(new BlacklistChatListener($this), $this);
 
         // Config.yml
         $this->saveResource("config.yml");
         $this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
 
         // Prefix
-        $this->prefix = $this->cfg->get("Prefix")." ";
+        $this->prefix = $this->cfg->get("Prefix") . " ";
 
-        // Config Version
-        $this->cfgversion = self::cfgversion;
+        $this->GlobalChat;
 
         // Config Update
         $this->cu = new ConfigUpdate($this);
         $this->cu->ConfigUpdate();
     }
-    
-    public function onCommand(CommandSender $player, Command $cmd, String $label, Array $args):bool{
-        if($cmd->getName() == "globalchat"){
-            if(isset($args[0])){
-                $player->getServer()->broadcastMessage("".str_replace(["{player}", "{msg}"], [$player->getName(), implode(" ", $args)], $this->cfg->get("Format")));
-                return true;
+
+    public function onCommand(CommandSender $sender, Command $cmd, String $label, array $args): bool
+    {   
+        if($sender instanceof ConsoleCommandSender){
+            $sender->sendMessage($this->prefix."Please Use Command In Game!");
+            return false;
+        }
+        if ($cmd->getName() == "globalchat") {
+            if(isset($this->GlobalChat[$sender->getName()])){
+                unset($this->GlobalChat[$sender->getName()]);
+                $sender->sendMessage($this->prefix.$this->cfg->get("Message")["GlobalChat"]["disable"]);
             }else{
-                $player->sendMessage($this->prefix."Usage: /gchat <message>");
-                return true;
+                $this->GlobalChat[$sender->getName()] = true;
+                $sender->sendMessage($this->prefix.$this->cfg->get("Message")["GlobalChat"]["enable"]);
             }
         }
         return true;

@@ -5,9 +5,8 @@ namespace angga7togk\chatperworld\Listener;
 use angga7togk\chatperworld\ChatPerWorld;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChatEvent;
-use pocketmine\player\Player;
 
-class ChatListener implements Listener
+class BlacklistChatListener implements Listener
 {
 
     public ChatPerWorld $plugin;
@@ -20,14 +19,10 @@ class ChatListener implements Listener
     public function onChat(PlayerChatEvent $event)
     {
         $player = $event->getPlayer();
-        $recipients = $event->getRecipients();
-        foreach ($recipients as $key => $recipient) {
-            if ($recipient instanceof Player) {
-                if ($recipient->getWorld() != $player->getWorld()) {
-                    unset($recipients[$key]);
-                }
-            }
+        $world = $player->getWorld()->getFolderName();
+        if(in_array($world, $this->plugin->cfg->get("Blacklist-WorldChat"))){
+            $event->cancel();
+            $player->sendMessage($this->plugin->prefix.$this->plugin->cfg->get("Message")["Blacklist-WorldChat"]);
         }
-        $event->setRecipients($recipients);
     }
 }
