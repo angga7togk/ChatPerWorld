@@ -15,7 +15,7 @@ use angga7togk\chatperworld\Listener\GlobalChatListener;
 class ChatPerWorld extends PluginBase
 {
 
-    public $cfg;
+    public Config $cfg;
     public $prefix;
     public $cu;
     public $cfgversion;

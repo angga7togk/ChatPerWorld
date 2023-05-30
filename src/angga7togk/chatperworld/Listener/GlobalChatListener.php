@@ -7,11 +7,12 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\Server;
 
 class GlobalChatListener implements Listener
 {
 
-    private $plugin;
+    private ChatPerWorld $plugin;
     public function __construct(ChatPerWorld $plugin)
     {
         $this->plugin = $plugin;
@@ -22,7 +23,7 @@ class GlobalChatListener implements Listener
         $player = $event->getPlayer();
         if (isset($this->plugin->GlobalChat[$player->getName()])) {
             $event->cancel();
-            $this->plugin->getServer()->broadcastMessage("" . str_replace(["{player}", "{msg}"], [$player->getName(), $event->getMessage()], $this->plugin->cfg->get("Format")));
+            Server::getInstance()->broadcastMessage("" . str_replace(["{player}", "{msg}"], [$player->getName(), $event->getMessage()], $this->plugin->cfg->get("Format")));
         }
     }
 
