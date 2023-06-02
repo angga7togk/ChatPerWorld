@@ -1,9 +1,7 @@
 name: ChatPerWorld
 main: angga7togk\chatperworld\ChatPerWorld
-version: 2.0.0
-api:
-- 4.0.0
-- 5.0.0
+version: 2.1.0
+api: 5.0.0
 author: Angga7Togk
 description: "To Split Words In Specific Word"
 
